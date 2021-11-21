@@ -13,7 +13,7 @@ const Home = props => {
   //     getUser();
   //   }, []);
   //   const [userData, setUserData] = useState({});
-  //   const getUser = async () => {
+  //   const getUser = async const [passwordShown, setPasswordShown] = useState(false); [passwordShown, setPasswordShown] = useState(false);() => {
   //     try {
   //       const data = await Axios.get('https://reqres.in/api/users/2');
   //       if (data.data.data) {

@@ -74,13 +74,15 @@ const SignUp = props => {
         );
         console.log(registeredData);
         if (registeredData.data.token) {
+          alert("Registered successfully, Login now")
           props.navigation.navigate('Login');
         } else {
           alert(' else Something went wrong');
         }
       }
     } catch (e) {
-      alert(e);
+      console.log(e.response,e.request)
+      alert(e.response.data.error);
     }
   };
 
@@ -235,11 +237,7 @@ const SignUp = props => {
               alignSelf: 'center',
               justifyContent: 'center',
             }}>
-            {/* <Image
-              style={{height: 35, width: 35, alignSelf: 'center'}}
-              source={{
-                uri: 'https://as2.ftcdn.net/v2/jpg/03/12/57/97/1000_F_312579728_JztO9YzcpOwnjuPpnh7i3pxfH1HDbX2l.jpg',
-              }}></Image> */}
+
             <Icon name={'key'} size={25} style={{color: 'black'}}></Icon>
           </View>
           <TextInput
@@ -322,6 +320,7 @@ const SignUp = props => {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
+        disabled={!email || !password || emailError || passwordError}
           style={{
             backgroundColor: 'white',
             height: 40,

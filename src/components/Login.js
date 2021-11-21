@@ -17,49 +17,6 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Axios from 'axios';
 
 const Login = props => {
-  // const [name,setName] = useState("Nikita Sharma")
-  // console.log(name)
-  // return <View style={{backgroundColor:"yellow",flex:1}}>
-  //   <Text style={{color:"red"}}>{name}</Text>
-  // <TouchableOpacity style={{backgroundColor:"blue", padding:20}}
-  //   onPress={()=>setName(name == "Archana Sharma" ? "Nikita Sharma" : "Archana Sharma")}><Text>Change Name</Text></TouchableOpacity>
-  // </View>
-
-  // const [counter,setCounter]=useState(0)
-  // console.log(counter)
-  // return <View style={{backgroundColor:"yellow",flex:1}}>
-  //   <Text style={{colour:"blue"}}>{counter}</Text>
-  //   <TouchableOpacity style={{backgroundColor:"pink",padding:10}}
-  //   onPress={()=>setCounter(counter+1)}><Text>Increment the counter</Text></TouchableOpacity>
-  //   <TouchableOpacity style={{backgroundColor:"red",padding:10}}
-  //   onPress={()=>setCounter(counter-1)}><Text>Decrement th counter</Text></TouchableOpacity>
-  // </View>
-  // }
-
-  // return <View >
-  //   <Text style={{color:"blue"}}>{counter}</Text>
-  //   <TextInput style={{borderWidth:1,borderColor:"green",padding:8,width:200}}
-  //              onChangeText={(text)=>setCounter(text)}></TextInput>
-  //   </View>
-
-  // return <View style={style.container}>
-  //   <Text style={{color:"white"}}> Welcome to my Blog! </Text>
-  // </View>
-  // }
-  // const style=StyleSheet.create({
-  //   container: {
-  //     flex: 2,
-  //     alighItems: "center",
-  //     backgroundColor:"red",
-  // }
-  // })
-
-  // return <View style={{flexDirection:"row",flex:1,backgroundColor:"pink",justifyContent:"center",alignItems:"center"}}>
-  //   <View style={{height:50,width:50,backgroundColor:"blue"}}></View>
-  //   <View style={{height:50,width:50,backgroundColor:"yellow"}}></View>
-  // </View>
-  // console.log('Login screen visible');
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
@@ -117,7 +74,8 @@ const Login = props => {
         alert('Something went wrong');
       }
     } catch (e) {
-      alert('Something went wrong');
+      console.log(e.response)
+      alert(e.response.data.error);
     }
   };
 
@@ -222,7 +180,7 @@ const Login = props => {
             placeholder={'Password'}></TextInput>
           <View
             style={{
-              width: 40,
+              width: Dimensions.get('window').width * 0.08,
               height: 40,
               borderRightColor: 'black',
               alignItems: 'center',
@@ -259,6 +217,7 @@ const Login = props => {
         </View>
 
         <TouchableOpacity
+         disabled={!username || !password || emailError || passwordError}
           style={{
             backgroundColor: 'blueviolet',
             alignSelf: 'center',
@@ -278,16 +237,40 @@ const Login = props => {
             Log in
           </Text>
         </TouchableOpacity>
-        <Text
+       <View style={{flexDirection:"row",alignItems:"center"}}>
+         <View style={{
+           borderStyle:"dashed",
+           borderTopColor:"black",
+          //  borderRadius:1,
+           width:Dimensions.get("window").width*0.3,
+           borderTopWidth:1,
+          
+          height:0}}>
+           </View>
+           <Text
           style={{
-            marginTop: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
+            marginHorizontal: 10,
+            // alignItems: 'center',
+            // justifyContent: 'center',
             fontSize: 20,
           }}>
-          ------------------------- or -------------------------
+          or 
         </Text>
-
+        <View style={{
+          borderStyle:"dashed",
+          borderTopColor:"black",
+          // borderRadius:1,
+          width:Dimensions.get("window").width*0.3,
+          borderTopWidth:1,
+         height:0}}>
+           </View>
+          </View> 
+        
+        
+        
+        
+        
+        
         <View
           style={{
             flexDirection: 'row',
