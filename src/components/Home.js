@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import Axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -34,7 +40,9 @@ const Home = props => {
         backgroundColor: 'white',
         padding: 20,
       }}>
-      <Text style={{color: 'red', fontSize: 40}}>Welcome to home!</Text>
+      <Text style={{color: 'purple', fontSize: 40, alignSelf: 'center'}}>
+        Home Screen
+      </Text>
       {/* <Text style={{fontSize: 20}}> Email: {userData.email}</Text> */}
       <View
         style={{
@@ -47,7 +55,7 @@ const Home = props => {
           name={'account'}
           style={{color: 'black'}}
           size={60}
-          onPress={() => props.navigation.navigate('User')}></Icon>
+          onPress={() => props.navigation.navigate('Profile')}></Icon>
         <Icon
           name={'ship-wheel'}
           style={{color: 'black'}}

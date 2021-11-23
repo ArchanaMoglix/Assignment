@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
-  StyleSheet,
   Image,
   Dimensions,
 } from 'react-native';
@@ -74,14 +73,14 @@ const SignUp = props => {
         );
         console.log(registeredData);
         if (registeredData.data.token) {
-          alert("Registered successfully, Login now")
+          alert('Registered successfully, Login now');
           props.navigation.navigate('Login');
         } else {
           alert(' else Something went wrong');
         }
       }
     } catch (e) {
-      console.log(e.response,e.request)
+      console.log(e.response, e.request);
       alert(e.response.data.error);
     }
   };
@@ -237,7 +236,6 @@ const SignUp = props => {
               alignSelf: 'center',
               justifyContent: 'center',
             }}>
-
             <Icon name={'key'} size={25} style={{color: 'black'}}></Icon>
           </View>
           <TextInput
@@ -320,9 +318,12 @@ const SignUp = props => {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-        disabled={!email || !password || emailError || passwordError}
+          disabled={!email || !password || emailError || passwordError}
           style={{
-            backgroundColor: 'white',
+            backgroundColor:
+              !email || !password || emailError || passwordError
+                ? 'grey'
+                : 'white',
             height: 40,
             width: Dimensions.get('window').width * 0.8,
             justifyContent: 'center',

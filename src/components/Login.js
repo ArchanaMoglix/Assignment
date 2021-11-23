@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
-  StyleSheet,
-  Image,
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -17,8 +15,8 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Axios from 'axios';
 
 const Login = props => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
   const [passwordShown, setPasswordShown] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -74,7 +72,7 @@ const Login = props => {
         alert('Something went wrong');
       }
     } catch (e) {
-      console.log(e.response)
+      console.log(e.response, e);
       alert(e.response.data.error);
     }
   };
@@ -217,9 +215,12 @@ const Login = props => {
         </View>
 
         <TouchableOpacity
-         disabled={!username || !password || emailError || passwordError}
+          disabled={!username || !password || emailError || passwordError}
           style={{
-            backgroundColor: 'blueviolet',
+            backgroundColor:
+              !username || !password || emailError || passwordError
+                ? 'grey'
+                : 'blueviolet',
             alignSelf: 'center',
             borderWidth: 1,
             width: 250,
@@ -237,40 +238,37 @@ const Login = props => {
             Log in
           </Text>
         </TouchableOpacity>
-       <View style={{flexDirection:"row",alignItems:"center"}}>
-         <View style={{
-           borderStyle:"dashed",
-           borderTopColor:"black",
-          //  borderRadius:1,
-           width:Dimensions.get("window").width*0.3,
-           borderTopWidth:1,
-          
-          height:0}}>
-           </View>
-           <Text
-          style={{
-            marginHorizontal: 10,
-            // alignItems: 'center',
-            // justifyContent: 'center',
-            fontSize: 20,
-          }}>
-          or 
-        </Text>
-        <View style={{
-          borderStyle:"dashed",
-          borderTopColor:"black",
-          // borderRadius:1,
-          width:Dimensions.get("window").width*0.3,
-          borderTopWidth:1,
-         height:0}}>
-           </View>
-          </View> 
-        
-        
-        
-        
-        
-        
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View
+            style={{
+              borderStyle: 'dashed',
+              borderTopColor: 'black',
+              //  borderRadius:1,
+              width: Dimensions.get('window').width * 0.3,
+              borderTopWidth: 1,
+
+              height: 0,
+            }}></View>
+          <Text
+            style={{
+              marginHorizontal: 10,
+              // alignItems: 'center',
+              // justifyContent: 'center',
+              fontSize: 20,
+            }}>
+            or
+          </Text>
+          <View
+            style={{
+              borderStyle: 'dashed',
+              borderTopColor: 'black',
+              // borderRadius:1,
+              width: Dimensions.get('window').width * 0.3,
+              borderTopWidth: 1,
+              height: 0,
+            }}></View>
+        </View>
+
         <View
           style={{
             flexDirection: 'row',

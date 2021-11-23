@@ -9,7 +9,7 @@ import {
 import Axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const User = props => {
+const Profile = props => {
   //   const [name, setName] = useState('');
   //   useEffect(() => {
   //     console.log(name);
@@ -40,7 +40,7 @@ const User = props => {
         backgroundColor: 'white',
         padding: 20,
       }}>
-      <Text style={{color: 'red', fontSize: 40}}>Welcome to Profile</Text>
+      <Text style={{color: 'red', fontSize: 40}}>My Profile</Text>
       <Text style={{fontSize: 20}}> Email: {userData.email}</Text>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
@@ -61,4 +61,4 @@ const User = props => {
     </View>
   );
 };
-export default User;
+export default Profile;
