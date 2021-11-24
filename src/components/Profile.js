@@ -5,17 +5,17 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  AsyncStorage,
 } from 'react-native';
 import Axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Profile = props => {
-  //   const [name, setName] = useState('');
-  //   useEffect(() => {
-  //     console.log(name);
-  //   });
+  const logoutFunction = async () => {
+    props.route.params.setIsLoggedIn(false);
+    await AsyncStorage.removeItem('token');
+  };
   useEffect(() => {
-    // console.log('mounted');
     getUser();
   }, []);
   const [userData, setUserData] = useState({});
@@ -53,7 +53,7 @@ const Profile = props => {
             borderRadius: 5,
           }}
           onPress={() => {
-            props.route.params.setIsLoggedIn(false);
+            logoutFunction();
           }}>
           <Text style={{color: 'white', fontSize: 20}}>Logout</Text>
         </TouchableOpacity>

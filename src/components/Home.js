@@ -1,49 +1,52 @@
-import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import Axios from 'axios';
+import React, {useEffect} from 'react';
+import {Text, View, BackHandler, Alert, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Home = props => {
-  //   const [name, setName] = useState('');
-  //   useEffect(() => {
-  //     console.log(name);
-  //   });
-  //   useEffect(() => {
-  //     // console.log('mounted');
-  //     getUser();
-  //   }, []);
-  //   const [userData, setUserData] = useState({});
-  //   const getUser = async const [passwordShown, setPasswordShown] = useState(false); [passwordShown, setPasswordShown] = useState(false);() => {
-  //     try {
-  //       const data = await Axios.get('https://reqres.in/api/users/2');
-  //       if (data.data.data) {
-  //         setUserData(data.data.data);
-  //       } else {
-  //         alert('Something went wrong!!');
-  //       }
-  //       console.log(data);
-  //     } catch (e) {
-  //       alert('Something went wrong!!');
-  //     }
-  //   };
+  const asyncFunction = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      if (value !== null) {
+        console.log(value);
+      } else {
+        console.log(value);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    asyncFunction();
+    const backAction = () => {
+      Alert.alert('Wait', 'Are you sure you want to go back?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: 'white',
-        padding: 20,
+        padding: 30,
       }}>
       <Text style={{color: 'purple', fontSize: 40, alignSelf: 'center'}}>
         Home Screen
       </Text>
-      {/* <Text style={{fontSize: 20}}> Email: {userData.email}</Text> */}
       <View
         style={{
           marginTop: 40,
@@ -56,11 +59,11 @@ const Home = props => {
           style={{color: 'black'}}
           size={60}
           onPress={() => props.navigation.navigate('Profile')}></Icon>
-        <Icon
-          name={'ship-wheel'}
+        <AntDesign
+          name={'setting'}
           style={{color: 'black'}}
           size={60}
-          onPress={() => props.navigation.navigate('Settings')}></Icon>
+          onPress={() => props.navigation.navigate('Settings')}></AntDesign>
       </View>
     </View>
   );

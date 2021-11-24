@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
-import {Text, View, Dimensions, FlatList} from 'react-native';
+import React from 'react';
+import {Text, View, Dimensions, AsyncStorage} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-import Axios from 'axios';
 
 const DrawerComponent = props => {
+  const logoutFunction = async () => {
+    props.setIsLoggedIn(false);
+    await AsyncStorage.removeItem('token');
+  };
   return (
     <View>
       <View style={{padding: 15, backgroundColor: '#e7e7e7'}}>
@@ -254,7 +257,7 @@ const DrawerComponent = props => {
             alignItems: 'center',
           }}
           onPress={() => {
-            props.setIsLoggedIn(false);
+            logoutFunction();
           }}>
           <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>
             Logout

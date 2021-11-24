@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   TextInput,
   Dimensions,
+  AsyncStorage,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -20,6 +21,7 @@ const Login = props => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [keepSignedIn, setKeepSignedIn] = useState(false);
 
   useEffect(() => {
     if (password) {
@@ -66,6 +68,9 @@ const Login = props => {
       });
       console.log(data);
       if (data.data.token) {
+        if (keepSignedIn) {
+          await AsyncStorage.setItem('token', data.data.token);
+        }
         props.route.params.setIsLoggedIn(true);
         // props.navigation.navigate('Home');
       } else {
@@ -211,7 +216,24 @@ const Login = props => {
           <TouchableOpacity onPress={() => props.navigation.navigation(' ')}>
             <Text>Forgot Password</Text>
           </TouchableOpacity>
-          {/* <Text>Keep me signed</Text> */}
+          <View
+            style={{
+              flexDirection: 'row',
+              // justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity onPress={() => setKeepSignedIn(!keepSignedIn)}>
+              <MaterialCommunityIcons
+                name={
+                  keepSignedIn ? 'check-box-outline' : 'checkbox-blank-outline'
+                }
+                size={15}
+                color={'black'}
+              />
+            </TouchableOpacity>
+
+            <Text>Keep me signed</Text>
+          </View>
         </View>
 
         <TouchableOpacity

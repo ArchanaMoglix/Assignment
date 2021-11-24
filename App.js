@@ -11,6 +11,7 @@ import Profile from './src/components/Profile';
 import List from './src/components/List';
 import Blog from './src/components/Blog';
 import AboutUs from './src/components/AboutUs';
+import Intermediary from './src/components/Intermediary';
 import Settings from './src/components/Settings';
 import DrawerComponent from './src/components/DrawerComponent';
 
@@ -24,6 +25,11 @@ const App = () => {
       <NavigationContainer>
         {!isLoggedIn ? (
           <Stack.Navigator>
+            <Stack.Screen
+              initialParams={{setIsLoggedIn}}
+              name="Intermediary"
+              component={Intermediary}
+              options={{headerShown: false}}></Stack.Screen>
             <Stack.Screen
               initialParams={{setIsLoggedIn}}
               name="Login"
