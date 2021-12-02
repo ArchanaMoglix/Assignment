@@ -16,13 +16,24 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Axios from 'axios';
 
 const Login = props => {
-  const [username, setUsername] = useState('eve.holt@reqres.in');
-  const [password, setPassword] = useState('cityslicka');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [keepSignedIn, setKeepSignedIn] = useState(false);
 
+  const checkUsername = async () => {
+    try {
+      const data = await AsyncStorage.getItem('username');
+      if (data != null) {
+        setUsername(data);
+      }
+    } catch (e) {}
+  };
+  useEffect(() => {
+    checkUsername();
+  }, []);
   useEffect(() => {
     if (password) {
       if (password && password.length >= 6) {
@@ -68,8 +79,9 @@ const Login = props => {
       });
       console.log(data);
       if (data.data.token) {
+        await AsyncStorage.setItem('token', data.data.token);
         if (keepSignedIn) {
-          await AsyncStorage.setItem('token', data.data.token);
+          await AsyncStorage.setItem('username', username);
         }
         props.route.params.setIsLoggedIn(true);
         // props.navigation.navigate('Home');

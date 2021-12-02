@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, AsyncStorage} from 'react-native';
 
 const Intermediary = props => {

@@ -14,6 +14,9 @@ import AboutUs from './src/components/AboutUs';
 import Intermediary from './src/components/Intermediary';
 import Settings from './src/components/Settings';
 import DrawerComponent from './src/components/DrawerComponent';
+import store from './src/redux/store';
+import {Provider} from 'react-redux';
+import MyCart from './src/components/MyCart';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,42 +44,48 @@ const App = () => {
               options={{headerShown: false}}></Stack.Screen>
           </Stack.Navigator>
         ) : (
-          <Drawer.Navigator
-            screenOptions={{drawerStyle: {width: 300}}}
-            drawerContent={props => (
-              <DrawerComponent {...props} setIsLoggedIn={setIsLoggedIn} />
-            )}>
-            {/* <Stack.Navigator> */}
-            {/* <Stack.Screen */}
-            <Drawer.Screen
-              name="Home"
-              component={Home}
-              options={{headerShown: false}}></Drawer.Screen>
-            <Drawer.Screen
-              // <Stack.Screen
-              initialParams={{setIsLoggedIn}}
-              name="Profile"
-              component={Profile}
-              options={{headerShown: false}}></Drawer.Screen>
-            <Drawer.Screen
-              // <Stack.Screen
-              name="Settings"
-              component={Settings}
-              options={{headerShown: false}}></Drawer.Screen>
-            {/* </Stack.Navigator> */}
-            <Drawer.Screen
-              name="List"
-              component={List}
-              options={{headerShown: false}}></Drawer.Screen>
-            <Drawer.Screen
-              name="Blog"
-              component={Blog}
-              options={{headerShown: false}}></Drawer.Screen>
-            <Drawer.Screen
-              name="AboutUs"
-              component={AboutUs}
-              options={{headerShown: false}}></Drawer.Screen>
-          </Drawer.Navigator>
+          <Provider store={store}>
+            <Drawer.Navigator
+              screenOptions={{drawerStyle: {width: 300}}}
+              drawerContent={props => (
+                <DrawerComponent {...props} setIsLoggedIn={setIsLoggedIn} />
+              )}>
+              {/* <Stack.Navigator> */}
+              {/* <Stack.Screen */}
+              <Drawer.Screen
+                name="Home"
+                component={Home}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                // <Stack.Screen
+                initialParams={{setIsLoggedIn}}
+                name="Profile"
+                component={Profile}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                // <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                name="List"
+                component={List}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                name="Blog"
+                component={Blog}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                name="AboutUs"
+                component={AboutUs}
+                options={{headerShown: false}}></Drawer.Screen>
+              <Drawer.Screen
+                name="MyCart"
+                component={MyCart}
+                options={{headerShown: false}}></Drawer.Screen>
+              {/* </Stack.Navigator> */}
+            </Drawer.Navigator>
+          </Provider>
         )}
       </NavigationContainer>
     </View>

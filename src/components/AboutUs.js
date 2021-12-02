@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // import Axios from 'axios';
 
 const AboutUs = props => {
@@ -13,8 +14,13 @@ const AboutUs = props => {
     <View
       style={{
         backgroundColor: '#ba8ca5',
-        padding: 20,
+        padding: 40,
       }}>
+      <View style={{position: 'absolute', top: 10, left: 10}}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <FontAwesome5 name={'bars'} size={30} color={'black'}></FontAwesome5>
+        </TouchableOpacity>
+      </View>
       <Text
         style={{
           color: 'black',

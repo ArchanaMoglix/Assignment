@@ -11,7 +11,7 @@ const DrawerComponent = props => {
     await AsyncStorage.removeItem('token');
   };
   return (
-    <View>
+    <View style={{flex: 1, position: 'relative'}}>
       <View style={{padding: 15, backgroundColor: '#e7e7e7'}}>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}> Menu </Text>
       </View>
@@ -247,11 +247,11 @@ const DrawerComponent = props => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{marginTop: 180}}>
+      <View style={{position: 'absolute', bottom: 0}}>
         <TouchableOpacity
           style={{
             backgroundColor: '#e7e7e7',
-            padding: 15,
+            height: 40,
             width: Dimensions.get('window').width * 0.833,
             justifyContent: 'center',
             alignItems: 'center',

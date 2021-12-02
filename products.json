@@ -1,0 +1,30 @@
+[
+    {
+    "ProductName": " Sanitizer",
+    "Price": "150",
+    "ID": "1",
+    "Image":"https://m.media-amazon.com/images/I/51vG3VxanCL._SY450_.jpg",
+    "Quantity":1
+    },
+    {
+        "ProductName": " Dettol Soap",
+        "Price": "50",
+        "ID": "2",
+        "Image":"https://m.media-amazon.com/images/I/61m4t+ysZlL._SL1000_.jpg",
+        "Quantity":1
+    },
+    {
+        "ProductName": " Perfume",
+        "Price": "950",
+        "ID": "3",
+        "Image":"https://fimgs.net/mdimg/perfume/375x500.66736.jpg",
+        "Quantity":1
+    },
+    {
+        "ProductName": " Handwash",
+        "Price": "80",
+        "ID": "4",
+        "Image":"https://m.media-amazon.com/images/I/51MHrlRbc+S._SX679_.jpg",
+        "Quantity":1
+    }
+]

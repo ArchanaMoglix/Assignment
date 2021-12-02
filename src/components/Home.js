@@ -1,9 +1,90 @@
 import React, {useEffect} from 'react';
-import {Text, View, BackHandler, Alert, AsyncStorage} from 'react-native';
+import {
+  Text,
+  View,
+  BackHandler,
+  FlatList,
+  Alert,
+  Image,
+  AsyncStorage,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useSelector, useDispatch} from 'react-redux';
+import {addToCart} from '../redux/actions/index';
 
 const Home = props => {
+  const currentStore = useSelector(state => state.products);
+  const cartData = useSelector(state => state.cart);
+  const dispatch = useDispatch();
+  console.log(currentStore);
+  useEffect(() => {
+    console.log(cartData);
+  });
+  const addCartFn = product => {
+    dispatch(addToCart(product));
+  };
+  const renderItem = ({item}) => {
+    // console.log(item);
+    return (
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          borderRadius: 4,
+          borderColor: 'e7e7e7',
+          borderWidth: 0.6,
+          marginTop: 12,
+          padding: 12,
+        }}>
+        <View
+          style={{
+            marginBottom: 5,
+          }}>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              borderRadius: 60,
+              // backgroundColor: 'red',
+            }}
+            source={{uri: item.Image}}></Image>
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignSelf: 'center',
+            padding: 5,
+          }}>
+          <Text
+            style={{
+              fontSize: 20,
+            }}>
+            {item.ProductName}{' '}
+          </Text>
+          <Text style={{fontWeight: 'bold'}}> Rs.{item.Price}</Text>
+          <Text style={{color: 'green'}}> Product ID: {item.ID}</Text>
+        </View>
+        <TouchableOpacity
+          style={{
+            backgroundColor: 'red',
+            width: 65,
+            height: 35,
+            borderRadius: 5,
+            justifyContent: 'center',
+          }}
+          onPress={() => addCartFn(item)}>
+          <Text style={{color: 'white', fontSize: 12, alignSelf: 'center'}}>
+            {' '}
+            Add to cart{' '}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   const asyncFunction = async () => {
     try {
       const value = await AsyncStorage.getItem('token');
@@ -18,15 +99,18 @@ const Home = props => {
   useEffect(() => {
     asyncFunction();
     const backAction = () => {
-      Alert.alert('Wait', 'Are you sure you want to go back?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'YES', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
+      if (props.navigation.isFocused()) {
+        Alert.alert('Wait', 'Are you sure you want to go back?', [
+          {
+            text: 'Cancel',
+            onPress: () => null,
+            style: 'cancel',
+          },
+          {text: 'YES', onPress: () => BackHandler.exitApp()},
+        ]);
+        return true;
+      }
+      return false;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -44,7 +128,37 @@ const Home = props => {
         backgroundColor: 'white',
         padding: 30,
       }}>
-      <Text style={{color: 'purple', fontSize: 40, alignSelf: 'center'}}>
+      <View
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: 10,
+        }}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <FontAwesome5 name={'bars'} size={30} color={'black'}></FontAwesome5>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+        }}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('MyCart')}>
+          <FontAwesome5
+            name={'shopping-cart'}
+            size={30}
+            color={'black'}></FontAwesome5>
+        </TouchableOpacity>
+      </View>
+
+      <Text
+        style={{
+          color: 'purple',
+          fontSize: 40,
+          alignSelf: 'center',
+          marginTop: 20,
+        }}>
         Home Screen
       </Text>
       <View
@@ -57,14 +171,27 @@ const Home = props => {
         <Icon
           name={'account'}
           style={{color: 'black'}}
-          size={60}
+          size={40}
           onPress={() => props.navigation.navigate('Profile')}></Icon>
         <AntDesign
           name={'setting'}
           style={{color: 'black'}}
-          size={60}
+          size={40}
           onPress={() => props.navigation.navigate('Settings')}></AntDesign>
       </View>
+      <Text
+        style={{
+          alignSelf: 'center',
+          color: 'blueviolet',
+          fontWeight: 'bold',
+          fontSize: 40,
+          marginBottom: 20,
+          fontStyle: 'italic',
+          textDecorationLine: 'underline',
+        }}>
+        Products
+      </Text>
+      <FlatList data={currentStore} renderItem={renderItem}></FlatList>
     </View>
   );
 };

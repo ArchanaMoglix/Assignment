@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, Image, FlatList} from 'react-native';
+import {Text, View, Image, FlatList, TouchableOpacity} from 'react-native';
 import Axios from 'axios';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const List = props => {
   const [listData, setListData] = useState([]);
@@ -55,6 +55,11 @@ const List = props => {
         backgroundColor: '#e8f5ae',
         padding: 20,
       }}>
+      <View style={{position: 'absolute', top: 10, left: 10}}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <FontAwesome5 name={'bars'} size={30} color={'black'}></FontAwesome5>
+        </TouchableOpacity>
+      </View>
       <Text
         style={{
           alignSelf: 'center',

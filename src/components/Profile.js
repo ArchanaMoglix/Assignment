@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {
   Text,
-  TextInput,
   View,
   TouchableOpacity,
   Dimensions,
   AsyncStorage,
 } from 'react-native';
 import Axios from 'axios';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const Profile = props => {
   const logoutFunction = async () => {
@@ -38,8 +37,13 @@ const Profile = props => {
       style={{
         flex: 1,
         backgroundColor: 'white',
-        padding: 20,
+        padding: 50,
       }}>
+      <View style={{position: 'absolute', top: 10, left: 10}}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <FontAwesome5 name={'bars'} size={30} color={'black'}></FontAwesome5>
+        </TouchableOpacity>
+      </View>
       <Text style={{color: 'red', fontSize: 40}}>My Profile</Text>
       <Text style={{fontSize: 20}}> Email: {userData.email}</Text>
       <View style={{marginTop: 20}}>
@@ -47,7 +51,7 @@ const Profile = props => {
           style={{
             backgroundColor: 'blueviolet',
             height: 40,
-            width: Dimensions.get('window').width * 0.8,
+            width: Dimensions.get('window').width * 0.7,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 5,
