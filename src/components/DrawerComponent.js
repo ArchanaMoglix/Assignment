@@ -54,7 +54,6 @@ const DrawerComponent = props => {
           height: 40,
           width: Dimensions.get('window').width * 0.833,
           flexDirection: 'row',
-          //   backgroundColor: '#e7e7e7',
           borderStyle: 'solid',
           borderBottomColor: '#e7e7e7',
           width: Dimensions.get('window').width * 0.833,
@@ -92,7 +91,6 @@ const DrawerComponent = props => {
 
       <View
         style={{
-          //   marginTop: 20,
           height: 40,
           width: Dimensions.get('window').width * 0.833,
           flexDirection: 'row',
@@ -136,7 +134,6 @@ const DrawerComponent = props => {
           height: 40,
           width: Dimensions.get('window').width * 0.833,
           flexDirection: 'row',
-          //   backgroundColor: '#e7e7e7',
           borderStyle: 'solid',
           borderBottomColor: '#e7e7e7',
           width: Dimensions.get('window').width * 0.833,

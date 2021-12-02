@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './src/components/Login';
 import SignUp from './src/components/SignUp';
 import Home from './src/components/Home';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import Profile from './src/components/Profile';
 import List from './src/components/List';
 import Blog from './src/components/Blog';
@@ -50,20 +50,16 @@ const App = () => {
               drawerContent={props => (
                 <DrawerComponent {...props} setIsLoggedIn={setIsLoggedIn} />
               )}>
-              {/* <Stack.Navigator> */}
-              {/* <Stack.Screen */}
               <Drawer.Screen
                 name="Home"
                 component={Home}
                 options={{headerShown: false}}></Drawer.Screen>
               <Drawer.Screen
-                // <Stack.Screen
                 initialParams={{setIsLoggedIn}}
                 name="Profile"
                 component={Profile}
                 options={{headerShown: false}}></Drawer.Screen>
               <Drawer.Screen
-                // <Stack.Screen
                 name="Settings"
                 component={Settings}
                 options={{headerShown: false}}></Drawer.Screen>
@@ -83,7 +79,6 @@ const App = () => {
                 name="MyCart"
                 component={MyCart}
                 options={{headerShown: false}}></Drawer.Screen>
-              {/* </Stack.Navigator> */}
             </Drawer.Navigator>
           </Provider>
         )}

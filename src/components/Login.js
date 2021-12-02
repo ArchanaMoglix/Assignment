@@ -1,4 +1,3 @@
-import {placeholder} from '@babel/types';
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -84,7 +83,6 @@ const Login = props => {
           await AsyncStorage.setItem('username', username);
         }
         props.route.params.setIsLoggedIn(true);
-        // props.navigation.navigate('Home');
       } else {
         alert('Something went wrong');
       }
@@ -145,7 +143,6 @@ const Login = props => {
           <TextInput
             value={username}
             style={{
-              // backgroundColor: 'red',
               height: 40,
               width: Dimensions.get('window').width * 0.6,
             }}
@@ -157,8 +154,6 @@ const Login = props => {
             Invalid Email Address
           </Text>
         ) : null}
-
-        {/* Password */}
 
         <View
           style={{
@@ -231,7 +226,6 @@ const Login = props => {
           <View
             style={{
               flexDirection: 'row',
-              // justifyContent: 'center',
               alignItems: 'center',
             }}>
             <TouchableOpacity onPress={() => setKeepSignedIn(!keepSignedIn)}>
@@ -277,7 +271,6 @@ const Login = props => {
             style={{
               borderStyle: 'dashed',
               borderTopColor: 'black',
-              //  borderRadius:1,
               width: Dimensions.get('window').width * 0.3,
               borderTopWidth: 1,
 
@@ -286,8 +279,6 @@ const Login = props => {
           <Text
             style={{
               marginHorizontal: 10,
-              // alignItems: 'center',
-              // justifyContent: 'center',
               fontSize: 20,
             }}>
             or
@@ -296,7 +287,6 @@ const Login = props => {
             style={{
               borderStyle: 'dashed',
               borderTopColor: 'black',
-              // borderRadius:1,
               width: Dimensions.get('window').width * 0.3,
               borderTopWidth: 1,
               height: 0,

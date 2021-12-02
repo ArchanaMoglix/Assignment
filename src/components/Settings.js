@@ -1,7 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
-import Axios from 'axios';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Text, View} from 'react-native';
 
 const Settings = () => {
   return (
@@ -12,7 +9,6 @@ const Settings = () => {
         padding: 20,
       }}>
       <Text style={{color: 'red', fontSize: 40}}>Settings Page</Text>
-      {/* <Text style={{fontSize: 20}}> Email: {userData.email}</Text> */}
     </View>
   );
 };

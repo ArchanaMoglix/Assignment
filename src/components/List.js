@@ -21,7 +21,6 @@ const List = props => {
     }
   };
   const renderItem = ({item}) => {
-    // console.log(item);
     return (
       <View style={{flexDirection: 'row'}}>
         <View

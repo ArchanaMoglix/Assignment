@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   View,
   Text,
@@ -14,12 +13,8 @@ import Axios from 'axios';
 import Octicons from 'react-native-vector-icons/Octicons';
 
 const SignUp = props => {
-  const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState(0);
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [secureEntry, setSecureEntry] = useState(true);
   const [passwordShown, setPasswordShown] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -71,7 +66,6 @@ const SignUp = props => {
             password: password,
           },
         );
-        console.log(registeredData);
         if (registeredData.data.token) {
           alert('Registered successfully, Login now');
           props.navigation.navigate('Login');
@@ -113,36 +107,6 @@ const SignUp = props => {
           paddingVertical: 40,
           borderRadius: 20,
         }}>
-        {/* <View
-          style={{
-            flexDirection: 'row',
-            alignSelf: 'center',
-            height: 45,
-            width: Dimensions.get('window').width * 0.8,
-            borderWidth: 1,
-            borderColor: 'black',
-            marginTop: 20,
-            borderRadius: 5,
-          }}>
-          <View style={{borderRightWidth: 1}}>
-            <Image
-              style={{
-                alignSelf: 'center',
-                justifyContent: 'center',
-                height: 40,
-                width: Dimensions.get('window').width * 0.1,
-              }}
-              source={{
-                uri: 'https://as2.ftcdn.net/v2/jpg/00/65/77/27/1000_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg',
-              }}></Image>
-          </View>
-          <TextInput
-            style={{height: 40, width: 280}}
-            onChangeText={fullname => setFullname(fullname)}
-            placeholder={'Full Name'}
-          />
-        </View> */}
-
         <View
           style={{
             borderColor: 'black',
@@ -182,39 +146,6 @@ const SignUp = props => {
             Invalid Email Address
           </Text>
         ) : null}
-
-        {/* <View
-          style={{
-            borderWidth: 1,
-            borderColor: 'black',
-            marginTop: 20,
-            flexDirection: 'row',
-            height: 40,
-            width: Dimensions.get('window').width * 0.8,
-            alignSelf: 'center',
-            borderRadius: 5,
-          }}>
-          <View
-            style={{
-              height: 40,
-              width: Dimensions.get('window').width * 0.1,
-              borderStartColor: 'black',
-              borderRightWidth: 1,
-              alignSelf: 'center',
-              justifyContent: 'center',
-            }}>
-            <MaterialCommunityIcons
-              // type={'MaterialCommunityIcons'}
-              name={'cellphone'}
-              style={{color: 'black'}}
-              size={30}></MaterialCommunityIcons>
-          </View>
-          <TextInput
-            style={{height: 40, width: 280}}
-            onChangeText={phone => setPhone(phone)}
-            placeholder={'Phone Number'}
-          />
-        </View> */}
 
         <View
           style={{
@@ -269,39 +200,6 @@ const SignUp = props => {
           </Text>
         ) : null}
 
-        {/* <View
-          style={{
-            borderWidth: 1,
-            borderColor: 'black',
-            marginTop: 20,
-            flexDirection: 'row',
-            height: 45,
-            width: Dimensions.get('window').width * 0.8,
-            alignSelf: 'center',
-            borderRadius: 5,
-          }}>
-          <View
-            style={{
-              height: 40,
-              width: Dimensions.get('window').width * 0.1,
-              borderStartColor: 'black',
-              borderRightWidth: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon
-              // type={'AntDesign'}
-              style={{color: 'black'}}
-              name={'key'}
-              size={25}></Icon>
-          </View>
-          <TextInput
-            secureTextEntry={true}
-            onChangeText={confirmPassword =>
-              setConfirmPassword(confirmPassword)
-            }
-            placeholder={'Confirm Password'}></TextInput>
-        </View> */}
         <View
           style={{
             flexDirection: 'row',

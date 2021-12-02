@@ -11,7 +11,6 @@ const myCart = props => {
     dispatch(removeFromCart(ID));
   };
   const renderItem = ({item}) => {
-    // console.log(item);
     return (
       <View
         style={{
@@ -88,8 +87,6 @@ const myCart = props => {
           fontWeight: 'bold',
           fontSize: 40,
           marginBottom: 20,
-          // fontStyle: 'italic',
-          // textDecorationLine: "underline",
         }}>
         My cart
       </Text>

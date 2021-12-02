@@ -17,17 +17,12 @@ import {addToCart} from '../redux/actions/index';
 
 const Home = props => {
   const currentStore = useSelector(state => state.products);
-  const cartData = useSelector(state => state.cart);
   const dispatch = useDispatch();
   console.log(currentStore);
-  useEffect(() => {
-    console.log(cartData);
-  });
   const addCartFn = product => {
     dispatch(addToCart(product));
   };
   const renderItem = ({item}) => {
-    // console.log(item);
     return (
       <View
         style={{
@@ -49,7 +44,6 @@ const Home = props => {
               height: 60,
               width: 60,
               borderRadius: 60,
-              // backgroundColor: 'red',
             }}
             source={{uri: item.Image}}></Image>
         </View>
@@ -117,7 +111,6 @@ const Home = props => {
       'hardwareBackPress',
       backAction,
     );
-
     return () => backHandler.remove();
   }, []);
 
